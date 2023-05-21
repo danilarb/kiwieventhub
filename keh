@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 function start() {
-    echo "Starting..."
+    echo "Starting the development environment"
 
     if ! networkExists; then
         echo "Creating the kiwieventhub network"
@@ -16,6 +16,11 @@ function stop() {
     docker-compose down
 }
 
+function build() {
+    echo "Building the development images"
+    docker-compose build
+}
+
 function networkExists() {
     docker network list | grep figured > /dev/null
 }
@@ -26,6 +31,9 @@ case "$1" in
         ;;
     stop)
         stop
+        ;;
+    build)
+        build
         ;;
     *)
         echo "Usage: $0 {start|stop}"
