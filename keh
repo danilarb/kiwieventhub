@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+function start() {
+    echo "Starting..."
+
+    if ! networkExists; then
+        echo "Creating the kiwieventhub network"
+        docker network create kiwieventhub
+    fi
+
+    docker-compose up -d
+}
+
+function stop() {
+    echo "Stopping the development environment"
+    docker-compose down
+}
+
+function networkExists() {
+    docker network list | grep figured > /dev/null
+}
+
+case "$1" in
+    start)
+        start
+        ;;
+    stop)
+        stop
+        ;;
+    *)
+        echo "Usage: $0 {start|stop}"
+esac

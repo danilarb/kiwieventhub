@@ -3,7 +3,7 @@ package com.kiwieventhub.kiwieventhub;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication(exclude = { })
+@SpringBootApplication()
 public class KiwieventhubApplication {
 
     public static void main(String[] args) {
