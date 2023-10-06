@@ -1,10 +1,29 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import DummyComponent from "./DummyComponent";
+import PlacesAutoComplete, {
+  geocodeByAddress,
+  getLatLng,
+} from "react-places-autocomplete";
 
 function App() {
+  const [address, setAddress] = React.useState<string>('');
+
+  const handleSelect = async (value: string) => {}
+
   return (
     <div className="App">
+      <PlacesAutoComplete
+        value={address}
+        onChange={setAddress}
+        onSelect={handleSelect}
+      >{({ getInputProps, suggestions, getSuggestionItemProps, loading}) => (
+          <div>
+            <input {...getInputProps({placeholder: "Type address"})} />
+          </div>
+      )}
+      </PlacesAutoComplete>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
@@ -18,6 +37,7 @@ function App() {
         >
           Learn React
         </a>
+        <DummyComponent thing={'thingy!'} />
       </header>
     </div>
   );
